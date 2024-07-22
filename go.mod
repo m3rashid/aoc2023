@@ -1,3 +1,3 @@
-module github.com/m3rashid/advent-of-code-2023
+module aoc2023
 
-go 1.21.3
+go 1.22.2
