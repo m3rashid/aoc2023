@@ -40,8 +40,8 @@ func Solution1() {
 		str = strings.ReplaceAll(str, "green", "g")
 
 		skipIter := false
-		for _, game := range strings.Split(str, "; ") {
-			for _, ball := range strings.Split(game, ", ") {
+		for game := range strings.SplitSeq(str, "; ") {
+			for ball := range strings.SplitSeq(game, ", ") {
 				scoreGame := strings.Split(ball, " ")
 				if scoreGame[0] == "" {
 					continue
