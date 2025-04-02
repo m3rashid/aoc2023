@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func handle_cardline(str string) float64 {
+func handle_cardline_part1(str string) float64 {
 	nums_str := strings.Trim(strings.Split(str, ":")[1], " ")
 	req_nums := strings.Split(nums_str, "|")
 
@@ -55,7 +55,7 @@ func Solution1() {
 	var ans float64
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		ans += handle_cardline(scanner.Text())
+		ans += handle_cardline_part1(scanner.Text())
 	}
 
 	fmt.Println("Answer:", ans)
