@@ -1,4 +1,4 @@
-package day3
+package main
 
 import (
 	"fmt"
@@ -37,7 +37,7 @@ import (
 // }
 
 func Solution2() {
-	raw_matrix, rows, cols := make_matrix("day3/input1.txt")
+	raw_matrix, rows, cols := makeMatrix("day3/input1.txt")
 	// raw_matrix, rows, cols := make_sample_matrix()
 
 	good_stars := make([][][]int, rows)
@@ -54,7 +54,7 @@ func Solution2() {
 			good_stars[i][j] = append(good_stars[i][j], num)
 		}
 
-		return raw_matrix[i][j] != "." && !is_number(raw_matrix[i][j])
+		return raw_matrix[i][j] != "." && !isNumber(raw_matrix[i][j])
 	}
 
 	for i := range rows {
@@ -64,7 +64,7 @@ func Solution2() {
 		for j < cols {
 			start = j
 			num := ""
-			for j < cols && is_number(raw_matrix[i][j]) {
+			for j < cols && isNumber(raw_matrix[i][j]) {
 				num += raw_matrix[i][j]
 				j++
 			}
@@ -74,7 +74,7 @@ func Solution2() {
 				continue
 			}
 
-			num_int := to_number(num)
+			num_int := toNumber(num)
 			_ = is_symbol(i, start-1, num_int) || is_symbol(i, j, num_int)
 			for k := start - 1; k < j+1; k++ {
 				_ = is_symbol(i-1, k, num_int) || is_symbol(i+1, k, num_int)

@@ -1,4 +1,4 @@
-package day3
+package main
 
 import (
 	"bufio"
@@ -8,21 +8,21 @@ import (
 	"strings"
 )
 
-func is_number(char string) bool {
+func isNumber(char string) bool {
 	if _, err := strconv.Atoi(char); err == nil {
 		return true
 	}
 	return false
 }
 
-func to_number(char string) int {
+func toNumber(char string) int {
 	if num, err := strconv.Atoi(char); err == nil {
 		return num
 	}
 	return 0
 }
 
-func make_matrix(fileName string) ([][]string, int, int) {
+func makeMatrix(fileName string) ([][]string, int, int) {
 	file, _ := os.Open(fileName)
 	defer file.Close()
 
@@ -30,27 +30,27 @@ func make_matrix(fileName string) ([][]string, int, int) {
 
 	var rows int
 	var cols int
-	var raw_matrix = [][]string{}
+	var rawMatrix = [][]string{}
 	for scanner.Scan() {
 		str := scanner.Text()
-		raw_matrix_col := strings.Split(str, "")
-		raw_matrix = append(raw_matrix, raw_matrix_col)
+		rawMatrixCol := strings.Split(str, "")
+		rawMatrix = append(rawMatrix, rawMatrixCol)
 		rows++
-		cols = len(raw_matrix_col)
+		cols = len(rawMatrixCol)
 	}
 
-	return raw_matrix, rows, cols
+	return rawMatrix, rows, cols
 }
 
 func Solution1() {
-	raw_matrix, rows, cols := make_matrix("day3/input1.txt")
+	rawMatrix, rows, cols := makeMatrix("day3/input1.txt")
 
-	is_symbol := func(i, j int) bool {
+	isSymbol := func(i, j int) bool {
 		if i < 0 || i >= rows || j < 0 || j >= cols {
 			return false
 		}
 
-		return raw_matrix[i][j] != "." && !is_number(raw_matrix[i][j])
+		return rawMatrix[i][j] != "." && !isNumber(rawMatrix[i][j])
 	}
 
 	ans := 0
@@ -61,8 +61,8 @@ func Solution1() {
 		for j < cols {
 			start = j
 			num := ""
-			for j < cols && is_number(raw_matrix[i][j]) {
-				num += raw_matrix[i][j]
+			for j < cols && isNumber(rawMatrix[i][j]) {
+				num += rawMatrix[i][j]
 				j++
 			}
 
@@ -76,8 +76,8 @@ func Solution1() {
 				-> X20X <-
 					 XXXX
 			*/
-			if is_symbol(i, start-1) || is_symbol(i, j) {
-				ans += to_number(num)
+			if isSymbol(i, start-1) || isSymbol(i, j) {
+				ans += toNumber(num)
 				j++
 				continue
 			}
@@ -88,8 +88,8 @@ func Solution1() {
 				-> XXXX <-
 			*/
 			for k := start - 1; k < j+1; k++ {
-				if is_symbol(i-1, k) || is_symbol(i+1, k) {
-					ans += to_number(num)
+				if isSymbol(i-1, k) || isSymbol(i+1, k) {
+					ans += toNumber(num)
 					break
 				}
 			}
