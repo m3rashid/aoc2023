@@ -13,7 +13,7 @@ func Solution2() {
 	grandTotal := 0
 	count := 1
 
-	file, err := os.Open("day2/input1.txt")
+	file, err := os.Open("input1.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

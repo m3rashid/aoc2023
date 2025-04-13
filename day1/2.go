@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"slices"
 	"unicode"
 )
 
@@ -25,28 +26,20 @@ func Solution2() {
 
 	validDigits := []string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 
-	var _subsets []string
+	var subsets []string
 	for _, digit := range validDigits {
-		_subsets = append(_subsets, generateSubsets(digit)...)
+		subsets = append(subsets, generateSubsets(digit)...)
 	}
 
 	// remove duplicates
 	var allValidDaysSubsets []string
-	for _, subset := range _subsets {
-		var found bool
-		for _, s := range allValidDaysSubsets {
-			if s == subset {
-				found = true
-				break
-			}
-		}
-
-		if !found {
+	for _, subset := range subsets {
+		if !slices.Contains(allValidDaysSubsets, subset) {
 			allValidDaysSubsets = append(allValidDaysSubsets, subset)
 		}
 	}
 
-	file, err := os.Open("day1/input1.txt")
+	file, err := os.Open("input2.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

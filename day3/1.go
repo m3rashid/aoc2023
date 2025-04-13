@@ -43,7 +43,7 @@ func makeMatrix(fileName string) ([][]string, int, int) {
 }
 
 func Solution1() {
-	rawMatrix, rows, cols := makeMatrix("day3/input1.txt")
+	rawMatrix, rows, cols := makeMatrix("input1.txt")
 
 	isSymbol := func(i, j int) bool {
 		if i < 0 || i >= rows || j < 0 || j >= cols {

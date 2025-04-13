@@ -37,7 +37,7 @@ import (
 // }
 
 func Solution2() {
-	raw_matrix, rows, cols := makeMatrix("day3/input1.txt")
+	raw_matrix, rows, cols := makeMatrix("input1.txt")
 	// raw_matrix, rows, cols := make_sample_matrix()
 
 	good_stars := make([][][]int, rows)
